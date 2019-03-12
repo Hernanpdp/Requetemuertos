@@ -5,6 +5,7 @@ using UnityEngine;
 public class chncleta : MonoBehaviour
 {
     float time;
+    float vel=100;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class chncleta : MonoBehaviour
     void Update()
     {
         Vector3 movimiento = transform.rotation * Vector3.forward;
-        transform.Translate(movimiento * Time.deltaTime * 50, Space.World);
+        transform.Translate(movimiento * Time.deltaTime * vel, Space.World);
         time += Time.deltaTime;
         if (time > 2)
         {

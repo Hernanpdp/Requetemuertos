@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,10 +13,10 @@ public class chncleta : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "bullet")
+        if (collision.gameObject.tag == "enemy")
         {
             Destroy(gameObject);
-            Debug.Log("ok");
+            Destroy(collision.gameObject);
         }
     }
 

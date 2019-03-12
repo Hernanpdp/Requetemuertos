@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,8 @@ public class Movement : MonoBehaviour {
     float life;
     public GameObject c1;
     public GameObject c2;
-
+    public Camera viewCamera;
+    Vector3 point;
     // Use this for initialization
     void Start () {
         vel = 1f;
@@ -106,5 +107,18 @@ public class Movement : MonoBehaviour {
         if (accel.x > limit){accel.x = limit;}else if(accel.x < -limit){accel.x = -limit;}
         if (accel.y > limit) { accel.y = limit; } else if (accel.y < -limit) { accel.y = -limit; }
         if (accel.z > limit) { accel.z = limit; } else if (accel.z < -limit) { accel.z = -limit; }
+
+        Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayDistance;
+
+        if (groundPlane.Raycast(ray, out rayDistance))
+        {
+            point = ray.GetPoint(rayDistance);
+            Debug.Log(point);
+            Debug.DrawLine(ray.origin, point, Color.red);
+        }
+        Vector3 fixedPoint = new Vector3(point.x, transform.position.y, point.z);
+        transform.LookAt(fixedPoint);
     }
 }

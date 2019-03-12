@@ -66,6 +66,7 @@ public class Movement : MonoBehaviour {
             gameObject.transform.position = new Vector3(0, 0, 0);
             life = 3;
             GameObject.Find("Controlador").GetComponent<timer>().death();
+            accel = Vector3.zero;
         }
     }
 

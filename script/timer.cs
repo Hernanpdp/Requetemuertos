@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,13 +11,12 @@ public class timer : MonoBehaviour
     public GameObject enemy3;
     public GameObject nave;
     public GameObject[] enemies;
-
     Vector3 posnave;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void death()
@@ -37,19 +36,33 @@ public class timer : MonoBehaviour
         {
             if (Random.Range(0, 10) >= 1)
             {
-                GameObject bulletClon = Instantiate(enemy1, new Vector3 (Random.Range(-208, 208),0.5f, Random.Range(-208, 208)), nave.transform.rotation) as GameObject;
+                Vector3 pos = new Vector3(Random.Range(208,-208),0.5f, Random.Range(208, -208));
+                if (Vector3.Distance(nave.transform.position,pos)>50)
+                {
+                    GameObject bulletClon = Instantiate(enemy1, pos, nave.transform.rotation) as GameObject;
+                }
             }
             time = 0;
             if (Random.Range(0, 10) >= 5)
             {
-                GameObject bulletClon = Instantiate(enemy2, new Vector3(Random.Range(-208, 208), 0.5f, Random.Range(-208, 208)), nave.transform.rotation) as GameObject;
+                Vector3 pos = new Vector3(Random.Range(208, -208), 0.5f, Random.Range(208, -208));
+                if (Vector3.Distance(nave.transform.position, pos) > 50)
+                {
+                    GameObject bulletClon = Instantiate(enemy2, pos, nave.transform.rotation) as GameObject;
+                }
+                time = 0;
             }
-            time = 0;
             if (Random.Range(0, 10) >= 8)
             {
-                GameObject bulletClon = Instantiate(enemy3, new Vector3(Random.Range(-208, 208), 0.5f, Random.Range(-208, 208)), nave.transform.rotation) as GameObject;
+                Vector3 pos = new Vector3(Random.Range(208, -208), 0.5f, Random.Range(208, -208));
+                if (Vector3.Distance(nave.transform.position, pos) > 50)
+                {
+                    GameObject bulletClon = Instantiate(enemy3, pos, nave.transform.rotation) as GameObject;
+                }
             }
             time = 0;
         }
+
+       
     }
 }

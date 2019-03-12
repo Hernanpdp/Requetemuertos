@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour {
     public GameObject c1;
     public GameObject c2;
     public Camera viewCamera;
+    public ParticleSystem explosion;
     Vector3 point;
     // Use this for initialization
     void Start () {
@@ -51,10 +52,12 @@ public class Movement : MonoBehaviour {
         if (life == 2)
         {
             c1.SetActive(false) ;
+            Instantiate(explosion, gameObject.transform.position,Quaternion.identity);
         }
         if (life == 1)
         {
             c2.SetActive(false);
+            Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         }
         if (life == 0)
         {
@@ -115,7 +118,6 @@ public class Movement : MonoBehaviour {
         if (groundPlane.Raycast(ray, out rayDistance))
         {
             point = ray.GetPoint(rayDistance);
-            Debug.Log(point);
             Debug.DrawLine(ray.origin, point, Color.red);
         }
         Vector3 fixedPoint = new Vector3(point.x, transform.position.y, point.z);
